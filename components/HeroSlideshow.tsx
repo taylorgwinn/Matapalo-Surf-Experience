@@ -20,7 +20,7 @@ export default function HeroSlideshow() {
   useEffect(() => {
     const id = setInterval(() => {
       setCurrent((c) => (c + 1) % slides.length);
-    }, 4500);
+    }, 2800);
     return () => clearInterval(id);
   }, []);
 
