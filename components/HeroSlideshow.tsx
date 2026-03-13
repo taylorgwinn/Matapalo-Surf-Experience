@@ -8,16 +8,7 @@ const slides = [
   { src: "/images/@granoysal_REVIVE-6810.jpg", alt: "Surfing at Matapalo", local: true },
   { src: "/images/hero-lesson.jpeg", alt: "Surfing at Cabo Matapalo", local: true },
   { src: "/images/hero-lineup.jpeg", alt: "Surfers in the lineup at Cabo Matapalo", local: true },
-  {
-    src: "https://matapalosurf.com/wp-content/uploads/2023/07/SNM_2542-1024x683.jpg",
-    alt: "Waves at Matapalo",
-    local: false,
-  },
-  {
-    src: "https://matapalosurf.com/wp-content/uploads/2023/07/IMG_3567-1024x683.jpg",
-    alt: "Surf lesson in Costa Rica",
-    local: false,
-  },
+  { src: "/images/woman surfing with son.png", alt: "Woman surfing with son at Cabo Matapalo", local: true },
   { src: "/images/@granoysal_REVIVE-4635.jpg", alt: "Surfing at Matapalo", local: true },
   { src: "/images/hero-aerial.jpeg", alt: "Aerial view of Cabo Matapalo", local: true },
   { src: "/images/@granoysal_REVIVE-5397.jpg", alt: "Surfing at Cabo Matapalo", local: true },
