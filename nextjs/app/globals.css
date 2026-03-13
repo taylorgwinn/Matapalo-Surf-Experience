@@ -1,0 +1,35 @@
+@import "tailwindcss";
+
+@theme {
+  --color-ocean: #0077b6;
+  --color-sky: #00b4d8;
+  --color-sand: #fde8b0;
+  --color-coral: #e07b54;
+  --color-jungle: #2d6a4f;
+  --color-dark: #1a2a1e;
+  --color-cream: #fffef9;
+  --color-text: #2c3e2d;
+
+  --font-bebas: var(--font-bebas-neue), sans-serif;
+  --font-nunito: var(--font-nunito-var), sans-serif;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  font-family: var(--font-nunito);
+  background-color: var(--color-cream);
+  color: var(--color-text);
+  overflow-x: hidden;
+}
+
+@keyframes bounce-scroll {
+  0%, 100% { transform: translateX(-50%) translateY(0); }
+  50% { transform: translateX(-50%) translateY(6px); }
+}
+
+.animate-bounce-scroll {
+  animation: bounce-scroll 2s infinite;
+}
