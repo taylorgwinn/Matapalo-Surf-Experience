@@ -1,0 +1,1648 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Matapalo Surf Experience — Cabo Matapalo, Costa Rica</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Nunito:wght@300;400;600;700;800&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --ocean:   #0077b6;
+      --sky:     #00b4d8;
+      --sand:    #fde8b0;
+      --coral:   #e07b54;
+      --jungle:  #2d6a4f;
+      --dark:    #1a2a1e;
+      --white:   #fffef9;
+      --text:    #2c3e2d;
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: 'Nunito', sans-serif;
+      background: var(--white);
+      color: var(--text);
+      overflow-x: hidden;
+    }
+
+    /* ── NAV ── */
+    nav {
+      position: fixed;
+      top: 0; left: 0; right: 0;
+      z-index: 100;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 0 2.5rem;
+      height: 76px;
+      overflow: visible;
+      background: rgba(10, 20, 15, 0.55);
+      backdrop-filter: blur(10px);
+      -webkit-backdrop-filter: blur(10px);
+    }
+
+    nav img.logo {
+      height: 104px;
+      filter: brightness(0) invert(1);
+    }
+
+    nav ul {
+      list-style: none;
+      display: flex;
+      gap: 2rem;
+    }
+
+    nav ul a {
+      color: var(--sand);
+      text-decoration: none;
+      font-weight: 700;
+      font-size: 0.95rem;
+      letter-spacing: 0.04em;
+      text-transform: uppercase;
+      transition: color 0.2s;
+    }
+
+    nav ul a:hover { color: var(--coral); }
+
+    .nav-cta {
+      background: var(--coral);
+      color: var(--white) !important;
+      padding: 0.5rem 1.3rem;
+      border-radius: 50px;
+      transition: background 0.2s, transform 0.15s !important;
+    }
+
+    .nav-cta:hover {
+      background: #c9623c !important;
+      color: var(--white) !important;
+      transform: translateY(-1px);
+    }
+
+    /* ── HERO ── */
+    #hero {
+      height: 100vh;
+      min-height: 600px;
+      position: relative;
+      display: flex;
+      align-items: flex-start;
+      justify-content: center;
+      text-align: center;
+      overflow: hidden;
+      padding-top: calc(76px + 0.75rem);
+    }
+
+    .hero-slides {
+      position: absolute;
+      inset: 0;
+    }
+
+    .hero-slides img {
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      opacity: 0;
+      transition: opacity 1.2s ease-in-out;
+    }
+
+    .hero-slides img.active { opacity: 1; }
+
+    .hero-overlay {
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(
+        to bottom,
+        rgba(10,25,20,0.35) 0%,
+        rgba(10,25,20,0.55) 60%,
+        rgba(10,25,20,0.8) 100%
+      );
+    }
+
+    .hero-content {
+      position: relative;
+      z-index: 2;
+      padding: 1rem;
+      max-width: 800px;
+    }
+
+    .hero-eyebrow {
+      display: inline-block;
+      background: var(--coral);
+      color: var(--white);
+      font-size: 0.8rem;
+      font-weight: 800;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      padding: 0.35rem 1rem;
+      border-radius: 50px;
+      margin-bottom: 2rem;
+    }
+
+    .hero-content h1 {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: clamp(2.8rem, 7vw, 5.5rem);
+      color: var(--white);
+      line-height: 1.1;
+      margin-bottom: 1rem;
+      text-shadow: 0 4px 20px rgba(0,0,0,0.4);
+      transform: translateY(0);
+    }
+
+    .hero-content p {
+      font-size: clamp(1rem, 2.2vw, 1.25rem);
+      color: rgba(255,255,245,0.9);
+      font-weight: 400;
+      max-width: 560px;
+      margin: 0 auto 3.5rem;
+      line-height: 1.7;
+    }
+
+    .btn {
+      display: inline-block;
+      padding: 0.85rem 2.2rem;
+      border-radius: 50px;
+      font-family: 'Nunito', sans-serif;
+      font-weight: 800;
+      font-size: 1rem;
+      text-decoration: none;
+      transition: transform 0.18s, box-shadow 0.18s;
+      cursor: pointer;
+      border: none;
+    }
+
+    .btn:hover { transform: translateY(-2px); box-shadow: 0 8px 24px rgba(0,0,0,0.2); }
+
+    .btn-primary {
+      background: var(--coral);
+      color: var(--white);
+    }
+
+    .btn-outline {
+      background: transparent;
+      color: var(--white);
+      border: 2px solid rgba(255,255,245,0.7);
+    }
+
+    .btn-outline:hover { background: rgba(255,255,245,0.1); }
+
+    .hero-scroll {
+      position: absolute;
+      bottom: 2rem;
+      left: 50%;
+      transform: translateX(-50%);
+      z-index: 2;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 0.4rem;
+      color: rgba(255,255,245,0.7);
+      font-size: 0.75rem;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      font-weight: 700;
+      animation: bounce 2s infinite;
+    }
+
+    .hero-scroll svg { width: 22px; height: 22px; }
+
+    @keyframes bounce {
+      0%, 100% { transform: translateX(-50%) translateY(0); }
+      50% { transform: translateX(-50%) translateY(6px); }
+    }
+
+    /* ── WAVE DIVIDER ── */
+    .wave {
+      display: block;
+      width: 100%;
+      overflow: hidden;
+      line-height: 0;
+    }
+
+    /* ── STATS RIBBON ── */
+    .stats-ribbon {
+      background: var(--ocean);
+      padding: 1.5rem 2rem;
+      display: flex;
+      justify-content: center;
+      gap: 3rem;
+      flex-wrap: wrap;
+    }
+
+    .stat {
+      text-align: center;
+      color: var(--white);
+    }
+
+    .stat strong {
+      display: block;
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: 2rem;
+      line-height: 1;
+    }
+
+    .stat span {
+      font-size: 0.8rem;
+      font-weight: 700;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      opacity: 0.85;
+    }
+
+    /* ── SECTIONS ── */
+    section { padding: 5rem 2rem; }
+
+    .section-label {
+      font-size: 0.78rem;
+      font-weight: 800;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--coral);
+      margin-bottom: 0.6rem;
+    }
+
+    h2 {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: clamp(2rem, 4vw, 3rem);
+      color: var(--dark);
+      line-height: 1.15;
+    }
+
+    .section-intro {
+      font-size: 1.1rem;
+      line-height: 1.75;
+      color: #4a5c4b;
+      max-width: 600px;
+    }
+
+    /* ── ABOUT ── */
+    #about {
+      background: var(--white);
+    }
+
+    .about-inner {
+      max-width: 1200px;
+      margin: 0 auto;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 4rem;
+      align-items: center;
+    }
+
+    .about-images {
+      position: relative;
+    }
+
+    .about-images img {
+      width: 100%;
+      border-radius: 16px;
+      object-fit: cover;
+      height: 420px;
+      box-shadow: 0 20px 60px rgba(0,0,0,0.15);
+    }
+
+    .about-badge {
+      position: absolute;
+      bottom: -1.5rem;
+      right: -1.5rem;
+      background: var(--jungle);
+      color: var(--white);
+      padding: 1.2rem 1.5rem;
+      border-radius: 14px;
+      text-align: center;
+      box-shadow: 0 8px 24px rgba(0,0,0,0.2);
+    }
+
+    .about-badge strong {
+      display: block;
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: 2.2rem;
+      line-height: 1;
+    }
+
+    .about-badge span {
+      font-size: 0.75rem;
+      font-weight: 700;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      opacity: 0.85;
+    }
+
+    .about-text h2 { margin-bottom: 1.2rem; }
+    .about-text p { margin-bottom: 1rem; }
+
+    .about-highlights {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.75rem;
+      margin-top: 1.5rem;
+    }
+
+    .pill {
+      background: var(--sand);
+      color: var(--jungle);
+      font-size: 0.82rem;
+      font-weight: 800;
+      letter-spacing: 0.05em;
+      padding: 0.4rem 1rem;
+      border-radius: 50px;
+    }
+
+    /* ── FOUNDER ── */
+    #founder {
+      background: var(--jungle);
+    }
+
+    .founder-inner {
+      max-width: 1200px;
+      margin: 0 auto;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 4rem;
+      align-items: center;
+    }
+
+    .founder-image img {
+      width: 100%;
+      height: 500px;
+      object-fit: cover;
+      object-position: center 18%;
+      border-radius: 16px;
+      box-shadow: 0 20px 60px rgba(0,0,0,0.4);
+    }
+
+    .founder-text .section-label {
+      color: var(--sky);
+    }
+
+    .founder-text h2 {
+      color: var(--white);
+      margin-bottom: 1.2rem;
+    }
+
+    .founder-text p {
+      color: rgba(255,255,245,0.85);
+      line-height: 1.8;
+      margin-bottom: 1rem;
+    }
+
+    .founder-text .founder-sig {
+      margin-top: 2rem;
+      font-style: italic;
+      color: var(--coral);
+      font-weight: 600;
+      font-size: 1rem;
+    }
+
+    .founder-credentials {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.6rem;
+      margin-top: 1.5rem;
+    }
+
+    .founder-credentials span {
+      background: rgba(255,255,255,0.08);
+      color: var(--sand);
+      font-size: 0.78rem;
+      font-weight: 700;
+      letter-spacing: 0.07em;
+      text-transform: uppercase;
+      padding: 0.35rem 0.9rem;
+      border-radius: 50px;
+      border: 1px solid rgba(255,255,255,0.15);
+    }
+
+    /* ── COACHES ── */
+    #coaches {
+      background: var(--jungle);
+    }
+
+    #coaches .coaches-header h2 {
+      color: var(--sand);
+    }
+
+    #coaches .section-label {
+      color: var(--sky);
+    }
+
+    #coaches .coaches-header .section-intro {
+      color: rgba(253,232,176,0.75);
+    }
+
+    #coaches .coach-card h3 {
+      color: var(--sand);
+    }
+
+    .coaches-inner {
+      max-width: 1100px;
+      margin: 0 auto;
+    }
+
+    .coaches-header {
+      text-align: center;
+      margin-bottom: 3rem;
+    }
+
+    .coaches-header .section-intro {
+      margin: 0.8rem auto 0;
+    }
+
+    .coaches-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 2rem;
+    }
+
+    .coach-card {
+      text-align: center;
+    }
+
+    .coach-photo {
+      width: 150px;
+      height: 150px;
+      border-radius: 50%;
+      overflow: hidden;
+      margin: 0 auto 1rem;
+      border: 4px solid var(--white);
+      box-shadow: 0 8px 24px rgba(0,0,0,0.12);
+      transition: transform 0.25s, box-shadow 0.25s;
+    }
+
+    .coach-card:hover .coach-photo {
+      transform: translateY(-4px);
+      box-shadow: 0 16px 36px rgba(0,0,0,0.16);
+    }
+
+    .coach-photo img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      object-position: top;
+    }
+
+    .coach-card h3 {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: 1.4rem;
+      color: var(--dark);
+      margin-bottom: 0.2rem;
+      letter-spacing: 0.03em;
+    }
+
+    .coach-founder .coach-photo {
+      width: 175px;
+      height: 175px;
+      border-color: var(--coral);
+    }
+
+    .coach-founder h3 {
+      font-size: 1.6rem;
+    }
+
+    .coach-card span {
+      font-size: 0.78rem;
+      font-weight: 700;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--coral);
+    }
+
+    /* ── SERVICES ── */
+    #services {
+      background: var(--sand);
+    }
+
+    .services-inner {
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+
+    .services-header {
+      text-align: center;
+      margin-bottom: 3.5rem;
+    }
+
+    .services-header .section-intro {
+      margin: 0.8rem auto 0;
+    }
+
+    .services-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 1.75rem;
+    }
+
+    .service-card {
+      background: var(--white);
+      border-radius: 20px;
+      overflow: hidden;
+      box-shadow: 0 4px 20px rgba(0,0,0,0.07);
+      transition: transform 0.25s, box-shadow 0.25s;
+    }
+
+    .service-card:hover {
+      transform: translateY(-6px);
+      box-shadow: 0 16px 40px rgba(0,0,0,0.12);
+    }
+
+    .service-card img {
+      width: 100%;
+      height: 220px;
+      object-fit: cover;
+    }
+
+    .service-card-body {
+      padding: 1.5rem 1.75rem 2rem;
+    }
+
+    .service-icon {
+      font-size: 2rem;
+      margin-bottom: 0.5rem;
+    }
+
+    .service-card h3 {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: 1.4rem;
+      color: var(--dark);
+      margin-bottom: 0.6rem;
+    }
+
+    .service-card p {
+      color: #5a6b5b;
+      font-size: 0.95rem;
+      line-height: 1.7;
+    }
+
+    /* ── GALLERY ── */
+    #gallery {
+      background: var(--dark);
+      padding: 5rem 1rem;
+    }
+
+    .gallery-header {
+      text-align: center;
+      margin-bottom: 2.5rem;
+    }
+
+    .gallery-header h2 { color: var(--sand); }
+    .gallery-header .section-label { color: var(--sky); }
+
+    .gallery-grid {
+      max-width: 1200px;
+      margin: 0 auto;
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      grid-template-rows: auto auto;
+      gap: 0.75rem;
+    }
+
+    .gallery-grid img {
+      width: 100%;
+      height: 260px;
+      object-fit: cover;
+      border-radius: 12px;
+      transition: transform 0.3s, filter 0.3s;
+      filter: brightness(0.92);
+    }
+
+    .gallery-grid img:hover {
+      transform: scale(1.02);
+      filter: brightness(1.05);
+    }
+
+    .gallery-grid .tall {
+      grid-row: span 2;
+      height: 100%;
+    }
+
+    /* ── QUOTE STRIP ── */
+    .quote-strip {
+      background: var(--jungle);
+      padding: 4rem 2rem;
+      text-align: center;
+    }
+
+    .quote-strip blockquote {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: clamp(1.5rem, 3.5vw, 2.4rem);
+      color: var(--sand);
+      max-width: 760px;
+      margin: 0 auto 1rem;
+      line-height: 1.4;
+    }
+
+    .quote-strip cite {
+      color: rgba(253,232,176,0.65);
+      font-style: normal;
+      font-size: 0.85rem;
+      font-weight: 700;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+    }
+
+    /* ── EXPERIENCE ── */
+    #experience {
+      background: var(--white);
+    }
+
+    .experience-inner {
+      max-width: 1200px;
+      margin: 0 auto;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 4rem;
+      align-items: center;
+    }
+
+    .experience-text { order: 1; }
+    .experience-image { order: 2; }
+
+    .experience-image img {
+      width: 100%;
+      height: 480px;
+      object-fit: cover;
+      border-radius: 20px;
+      box-shadow: 0 20px 60px rgba(0,0,0,0.12);
+    }
+
+    .feature-list {
+      list-style: none;
+      margin-top: 1.5rem;
+      display: flex;
+      flex-direction: column;
+      gap: 0.85rem;
+    }
+
+    .feature-list li {
+      display: flex;
+      align-items: flex-start;
+      gap: 0.75rem;
+      font-size: 1rem;
+      line-height: 1.5;
+      color: #3d4f3e;
+    }
+
+    .feature-list li span.icon {
+      flex-shrink: 0;
+      background: var(--sand);
+      width: 32px;
+      height: 32px;
+      border-radius: 50%;
+      display: grid;
+      place-items: center;
+      font-size: 1rem;
+      margin-top: 0.05rem;
+    }
+
+    /* ── TESTIMONIALS ── */
+    #testimonials {
+      background: var(--sand);
+    }
+
+    .testimonial-card {
+      background: var(--ocean);
+    }
+
+    .testimonial-card blockquote {
+      color: rgba(255,255,245,0.9);
+    }
+
+    .reviewer-name {
+      color: var(--white);
+    }
+
+    .testimonials-inner {
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+
+    .testimonials-header {
+      text-align: center;
+      margin-bottom: 3rem;
+    }
+
+    .testimonials-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 1.75rem;
+    }
+
+    .testimonial-card {
+      background: var(--ocean);
+      border-radius: 20px;
+      padding: 2rem;
+      display: flex;
+      flex-direction: column;
+      gap: 1rem;
+    }
+
+    .stars {
+      color: var(--coral);
+      font-size: 1.1rem;
+      letter-spacing: 0.1em;
+    }
+
+    .testimonial-card blockquote {
+      font-size: 0.97rem;
+      line-height: 1.75;
+      color: var(--white);
+      font-style: italic;
+      flex: 1;
+    }
+
+    .reviewer {
+      display: flex;
+      flex-direction: column;
+      gap: 0.2rem;
+      margin-top: auto;
+    }
+
+    .reviewer-name {
+      font-weight: 800;
+      font-size: 0.95rem;
+      color: var(--white);
+    }
+
+    .reviewer-source {
+      font-size: 0.75rem;
+      font-weight: 700;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--coral);
+    }
+
+    /* ── BOOK CTA ── */
+    #book {
+      background: var(--ocean);
+      padding: 6rem 2rem;
+      text-align: center;
+    }
+
+    #book h2 {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: clamp(2.2rem, 5vw, 3.5rem);
+      color: var(--white);
+      margin-bottom: 1rem;
+    }
+
+    #book p {
+      color: rgba(255,255,245,0.85);
+      font-size: 1.1rem;
+      max-width: 520px;
+      margin: 0 auto 2.5rem;
+      line-height: 1.7;
+    }
+
+    .cta-buttons { display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap; }
+
+    .btn-white {
+      background: var(--white);
+      color: var(--ocean);
+    }
+
+    .btn-white:hover { background: var(--sand); }
+
+    .btn-outline-white {
+      background: transparent;
+      color: var(--white);
+      border: 2px solid rgba(255,255,245,0.6);
+    }
+
+    /* ── CONTACT ── */
+    #contact {
+      background: var(--sand);
+      padding: 5rem 2rem;
+    }
+
+    .contact-inner {
+      max-width: 900px;
+      margin: 0 auto;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 3rem;
+      align-items: start;
+    }
+
+    .contact-info h2 { margin-bottom: 1.2rem; }
+    .contact-info p { color: #4a5c4b; line-height: 1.7; margin-bottom: 1.5rem; }
+
+    .contact-links {
+      display: flex;
+      flex-direction: column;
+      gap: 0.9rem;
+    }
+
+    .contact-link {
+      display: flex;
+      align-items: center;
+      gap: 0.85rem;
+      color: var(--dark);
+      text-decoration: none;
+      font-weight: 600;
+      font-size: 0.97rem;
+      transition: color 0.2s;
+    }
+
+    .contact-link:hover { color: var(--coral); }
+
+    .contact-link .icon {
+      width: 38px;
+      height: 38px;
+      border-radius: 50%;
+      background: var(--white);
+      display: grid;
+      place-items: center;
+      font-size: 1.1rem;
+      flex-shrink: 0;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+    }
+
+    .contact-form {
+      background: var(--white);
+      padding: 2rem;
+      border-radius: 20px;
+      box-shadow: 0 8px 30px rgba(0,0,0,0.07);
+    }
+
+    .contact-form h3 {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: 1.5rem;
+      color: var(--dark);
+      margin-bottom: 1.2rem;
+    }
+
+    .form-group {
+      margin-bottom: 1rem;
+    }
+
+    .form-group label {
+      display: block;
+      font-size: 0.82rem;
+      font-weight: 800;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      color: #5a6b5b;
+      margin-bottom: 0.35rem;
+    }
+
+    .form-group input,
+    .form-group textarea,
+    .form-group select {
+      width: 100%;
+      padding: 0.75rem 1rem;
+      border: 2px solid #e0ead1;
+      border-radius: 10px;
+      font-family: 'Nunito', sans-serif;
+      font-size: 0.95rem;
+      color: var(--text);
+      background: var(--white);
+      transition: border-color 0.2s;
+      outline: none;
+      appearance: none;
+    }
+
+    .form-group input:focus,
+    .form-group textarea:focus,
+    .form-group select:focus {
+      border-color: var(--ocean);
+    }
+
+    .form-group textarea { resize: vertical; min-height: 100px; }
+
+    .form-submit {
+      width: 100%;
+      padding: 0.9rem;
+      background: var(--coral);
+      color: var(--white);
+      border: none;
+      border-radius: 50px;
+      font-family: 'Nunito', sans-serif;
+      font-size: 1rem;
+      font-weight: 800;
+      cursor: pointer;
+      transition: background 0.2s, transform 0.15s;
+      margin-top: 0.5rem;
+    }
+
+    .form-submit:hover { background: #c9623c; transform: translateY(-1px); }
+
+    /* ── FOOTER ── */
+    footer {
+      background: var(--dark);
+      color: rgba(253,232,176,0.7);
+      text-align: center;
+      padding: 2.5rem 1.5rem;
+      font-size: 0.85rem;
+      line-height: 1.8;
+    }
+
+    footer strong { color: var(--sand); }
+
+    footer .footer-logo {
+      display: block;
+      height: 70px;
+      margin: 0 auto 1rem;
+      filter: brightness(0) invert(1);
+    }
+
+    footer .social {
+      display: flex;
+      justify-content: center;
+      gap: 1rem;
+      margin: 1rem 0;
+    }
+
+    footer .social a {
+      color: var(--sand);
+      text-decoration: none;
+      font-weight: 700;
+      font-size: 0.8rem;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      opacity: 0.8;
+      transition: opacity 0.2s;
+    }
+
+    footer .social a:hover { opacity: 1; }
+
+    /* ── NAV TOGGLE ── */
+    .nav-toggle {
+      display: none;
+      background: none;
+      border: none;
+      cursor: pointer;
+      padding: 0.4rem;
+      color: var(--sand);
+      flex-direction: column;
+      justify-content: center;
+      gap: 5px;
+    }
+
+    .nav-toggle span {
+      display: block;
+      width: 24px;
+      height: 2px;
+      background: currentColor;
+      border-radius: 2px;
+      transition: transform 0.25s, opacity 0.25s;
+    }
+
+    .nav-toggle.open span:nth-child(1) { transform: translateY(7px) rotate(45deg); }
+    .nav-toggle.open span:nth-child(2) { opacity: 0; }
+    .nav-toggle.open span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
+
+    /* ── HERO CTAs ── */
+    .hero-ctas {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 1rem;
+      justify-content: center;
+    }
+
+    /* ── WHATSAPP FLOAT ── */
+    .whatsapp-float {
+      position: fixed;
+      bottom: 2rem;
+      right: 2rem;
+      z-index: 999;
+      background: #25d366;
+      color: white;
+      width: 60px;
+      height: 60px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      box-shadow: 0 6px 24px rgba(37,211,102,0.4);
+      transition: transform 0.2s, box-shadow 0.2s;
+    }
+
+    .whatsapp-float:hover {
+      transform: translateY(-3px) scale(1.05);
+      box-shadow: 0 10px 32px rgba(37,211,102,0.5);
+    }
+
+    .whatsapp-float svg {
+      width: 32px;
+      height: 32px;
+    }
+
+    /* ── RESPONSIVE ── */
+    @media (max-width: 768px) {
+      /* Nav */
+      .nav-toggle { display: flex; }
+
+      nav ul {
+        display: flex;
+        flex-direction: column;
+        position: fixed;
+        top: 76px; left: 0; right: 0;
+        background: rgba(10, 20, 15, 0.97);
+        backdrop-filter: blur(12px);
+        -webkit-backdrop-filter: blur(12px);
+        padding: 0.5rem 2rem 2rem;
+        gap: 0;
+        transform: translateY(-110%);
+        opacity: 0;
+        pointer-events: none;
+        transition: transform 0.3s ease, opacity 0.25s ease;
+        z-index: 99;
+      }
+
+      nav ul.open {
+        transform: translateY(0);
+        opacity: 1;
+        pointer-events: auto;
+      }
+
+      nav ul li { border-bottom: 1px solid rgba(255,255,245,0.1); }
+      nav ul li:last-child { border-bottom: none; }
+      nav ul a { display: block; padding: 0.9rem 0; font-size: 1.05rem; }
+      .nav-cta { margin-top: 0.5rem; text-align: center; border-bottom: none !important; }
+
+      /* Hero CTAs */
+      .hero-ctas { flex-direction: column; align-items: center; }
+      .hero-ctas .btn { width: 100%; max-width: 280px; text-align: center; }
+
+      /* Grids */
+      .about-inner,
+      .founder-inner,
+      .experience-inner,
+      .contact-inner { grid-template-columns: 1fr; gap: 2rem; }
+
+      .about-badge { bottom: -1rem; right: 0.5rem; }
+
+      /* Founder */
+      .founder-image img { height: 300px !important; }
+
+      /* Coaches */
+      .coaches-grid { grid-template-columns: repeat(2, 1fr); }
+
+      /* Gallery */
+      .gallery-grid { grid-template-columns: repeat(2, 1fr); }
+      .gallery-grid .tall { grid-row: span 1; height: 200px; }
+      .gallery-grid img { height: 180px; }
+
+      /* Experience */
+      .experience-text { order: 2; }
+      .experience-image { order: 1; }
+      .experience-image img { height: 280px; }
+    }
+
+    @media (max-width: 480px) {
+      section { padding: 3.5rem 1.2rem; }
+      .coaches-grid { grid-template-columns: repeat(2, 1fr); }
+      .gallery-grid { grid-template-columns: 1fr; }
+      .gallery-grid img { height: 220px; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- ── NAV ── -->
+  <nav>
+    <img
+      class="logo"
+      src="images/logo.png"
+      alt="Matapalo Surf Experience"
+    />
+    <button class="nav-toggle" aria-label="Toggle menu" aria-expanded="false">
+      <span></span><span></span><span></span>
+    </button>
+    <ul>
+      <li><a href="#about">About</a></li>
+      <li><a href="#services">Services</a></li>
+      <li><a href="#gallery">Gallery</a></li>
+      <li><a href="#contact">Contact</a></li>
+      <li><a href="info.html">Info</a></li>
+      <li><a href="#book" class="nav-cta">Book Now</a></li>
+    </ul>
+  </nav>
+
+  <!-- ── HERO ── -->
+  <section id="hero">
+    <div class="hero-slides">
+      <img
+        src="images/hero-wave.jpeg"
+        alt="Surfing at Cabo Matapalo"
+        class="active"
+        fetchpriority="high"
+      />
+      <img
+        src="images/@granoysal_REVIVE-6810.jpg"
+        alt="Surfing at Matapalo"
+      />
+      <img
+        src="images/hero-lesson.jpeg"
+        alt="Surfing at Cabo Matapalo"
+      />
+      <img
+        src="images/hero-lineup.jpeg"
+        alt="Surfers in the lineup at Cabo Matapalo"
+      />
+      <img
+        src="https://matapalosurf.com/wp-content/uploads/2023/07/SNM_2542-1024x683.jpg"
+        alt="Waves at Matapalo"
+      />
+      <img
+        src="https://matapalosurf.com/wp-content/uploads/2023/07/IMG_3567-1024x683.jpg"
+        alt="Surf lesson in Costa Rica"
+      />
+      <img
+        src="images/@granoysal_REVIVE-4635.jpg"
+        alt="Surfing at Matapalo"
+      />
+      <img
+        src="images/hero-aerial.jpeg"
+        alt="Aerial view of Cabo Matapalo"
+      />
+      <img
+        src="images/@granoysal_REVIVE-5397.jpg"
+        alt="Surfing at Cabo Matapalo"
+      />
+    </div>
+    <div class="hero-overlay"></div>
+    <div class="hero-content">
+      <span class="hero-eyebrow">Cabo Matapalo · Osa Peninsula · Costa Rica</span>
+      <h1>Surf the Jungle</h1>
+      <p>Private surf lessons, guiding, retreats, and jungle adventures in one of the most remote and beautiful corners of Costa Rica — locally owned, expert-led.</p>
+      <div class="hero-ctas">
+        <a href="#book" class="btn btn-primary">Book Your Session</a>
+        <a href="#services" class="btn btn-outline">See What We Offer</a>
+      </div>
+    </div>
+    <div class="hero-scroll">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M12 5v14M5 12l7 7 7-7"/></svg>
+      Scroll
+    </div>
+  </section>
+
+  <!-- ── STATS ── -->
+  <div class="stats-ribbon">
+    <div class="stat"><strong>20+</strong><span>Years Surfing</span></div>
+    <div class="stat"><strong>15+</strong><span>Years Teaching</span></div>
+    <div class="stat"><strong>100%</strong><span>Locally Owned</span></div>
+    <div class="stat"><strong>All Levels</strong><span>Welcome</span></div>
+  </div>
+
+  <!-- ── ABOUT ── -->
+  <section id="about">
+    <div class="about-inner">
+      <div class="about-images">
+        <img
+          src="images/sunset.jpg"
+          alt="Sunset at Cabo Matapalo"
+          loading="lazy"
+        />
+        <div class="about-badge">
+          <strong>Osa</strong>
+          <span>Peninsula</span>
+        </div>
+      </div>
+      <div class="about-text">
+        <p class="section-label">Who We Are</p>
+        <h2>Born From the Ocean,<br/>Rooted in Costa Rica</h2>
+        <p class="section-intro" style="margin-top:1rem;">
+          Matapalo Surf Experience is a locally owned and operated surf-focused business nestled in Cabo Matapalo — a remote paradise on the tip of the Osa Peninsula, just 25 minutes from Puerto Jimenez.
+        </p>
+        <p class="section-intro">
+          National Geographic once called the Osa Peninsula <em>"the most biologically intense place on earth."</em> We call it home. Our certified instructors bring over 20 years of surfing and 15 years of teaching experience to every session.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── COACHES ── -->
+  <section id="coaches">
+    <div class="coaches-inner">
+      <div class="coaches-header">
+        <p class="section-label">The Team</p>
+        <h2>Our Coaches</h2>
+        <p class="section-intro">Costa Rica-born and raised, every one of our instructors shares a deep passion for the ocean, the sport, and passing that stoke on to you.</p>
+      </div>
+      <div class="coaches-grid">
+
+        <div class="coach-card">
+          <div class="coach-photo">
+            <img src="images/aaron-coach.jpg" alt="Aaron" loading="lazy" />
+          </div>
+          <h3>Aaron</h3>
+          <span>Founder & Head Surf Instructor</span>
+        </div>
+
+        <div class="coach-card">
+          <div class="coach-photo">
+            <img src="https://matapalosurf.com/wp-content/uploads/2023/02/1.png" alt="Ronnie" />
+          </div>
+          <h3>Ronnie</h3>
+          <span>Surf Instructor</span>
+        </div>
+
+        <div class="coach-card">
+          <div class="coach-photo">
+            <img src="https://matapalosurf.com/wp-content/uploads/2023/02/2.png" alt="Lance" />
+          </div>
+          <h3>Lance</h3>
+          <span>Surf Instructor</span>
+        </div>
+
+        <div class="coach-card">
+          <div class="coach-photo">
+            <img src="https://matapalosurf.com/wp-content/uploads/2023/02/3.png" alt="Braulio" />
+          </div>
+          <h3>Braulio</h3>
+          <span>Surf Instructor</span>
+        </div>
+
+        <div class="coach-card">
+          <div class="coach-photo">
+            <img src="https://matapalosurf.com/wp-content/uploads/2023/02/5.png" alt="Erick" />
+          </div>
+          <h3>Erick</h3>
+          <span>Surf Instructor</span>
+        </div>
+
+        <div class="coach-card">
+          <div class="coach-photo">
+            <img src="https://matapalosurf.com/wp-content/uploads/2023/02/6.png" alt="Jack" />
+          </div>
+          <h3>Jack</h3>
+          <span>Surf Instructor</span>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ── FOUNDER ── -->
+  <section id="founder">
+    <div class="founder-inner">
+      <div class="founder-image">
+        <img src="images/founder-aaron-2.jpg" alt="Aaron Garcia, Founder of Matapalo Surf Experience" loading="lazy" style="object-fit: cover; object-position: center 15%; height: 620px;" />
+      </div>
+      <div class="founder-text">
+        <p class="section-label">Meet the Founder</p>
+        <h2>Aaron Garcia</h2>
+        <div class="founder-credentials">
+          <span>CEO & Founder</span>
+          <span>Surf Guide</span>
+          <span>ISA Certified</span>
+        </div>
+        <p style="margin-top: 1.5rem;">I discovered my passion for surfing at 12 years old. I've competed in national contests and traveled to many other countries, surfing some of the best surf breaks on earth.</p>
+        <p>As a teenager, I began to work with local surf schools and developed my skills as an instructor. I have worked with people from all over the world, both individually and through retreats like RiseUp and specialty yoga retreats.</p>
+        <p>My goal is for people to come surf Matapalo, experience the jungle life, and enjoy all of the incredible things it has to offer.</p>
+        <p class="founder-sig">— Aaron Garcia, founder and owner of Matapalo Surf Experience</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── SERVICES ── -->
+  <section id="services">
+    <div class="services-inner">
+      <div class="services-header">
+        <p class="section-label">What We Do</p>
+        <h2>Your Perfect Waves Await</h2>
+        <p class="section-intro">Whether you're paddling for the first time or chasing your best cutback, we've got an experience built for you.</p>
+      </div>
+      <div class="services-grid">
+
+        <div class="service-card">
+          <img
+            src="https://matapalosurf.com/wp-content/uploads/2023/07/Untitled-design-7-1024x720.png"
+            alt="Surf Coaching"
+          />
+          <div class="service-card-body">
+            <div class="service-icon">🏄</div>
+            <h3>Surf Coaching</h3>
+            <p>
+              One-on-one and small group lessons for all skill levels. We cover wave reading, surf etiquette, paddling technique, and pop-up mechanics. Our goal is to make every surfer — from first-timers to seasoned riders — feel confident, safe, and stoked in the water.
+            </p>
+          </div>
+        </div>
+
+        <div class="service-card">
+          <img
+            src="images/pelicans-lineup.webp"
+            alt="Jungle Adventures"
+          />
+          <div class="service-card-body">
+            <div class="service-icon">🌿</div>
+            <h3>Jungle Adventures</h3>
+            <p>
+              Surf boat trips, deep-sea fishing, horseback riding on the beach, tree climbing, and wildlife exploration. Howler monkeys, toucans, scarlet macaws, dolphins, and humpback whales are regular neighbors here.
+            </p>
+          </div>
+        </div>
+
+        <div class="service-card">
+          <img
+            src="images/surf-brigade.png"
+            alt="Group & Partner Retreats"
+          />
+          <div class="service-card-body">
+            <div class="service-icon">🤝</div>
+            <h3>Partner Retreats</h3>
+            <p>
+              Planning a yoga retreat, wellness event, or group adventure? We work with retreat organizers to create fully custom packages combining surf, nature, and local culture for your group.
+            </p>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ── GALLERY ── -->
+  <section id="gallery">
+    <div class="gallery-header">
+      <p class="section-label">Matapalo Life</p>
+      <h2>Where the Jungle Meets the Sea</h2>
+    </div>
+    <div class="gallery-grid">
+      <img
+        class="tall"
+        src="images/Kailu.png"
+        alt="Instructor surfing with a young child"
+        loading="lazy"
+        style="height: 100%; object-fit: cover; object-position: center top;"
+      />
+      <img src="images/surfers.png" alt="Surfers riding waves at Cabo Matapalo" loading="lazy" />
+      <img src="images/revive-4327.jpg" alt="Surf lesson at Cabo Matapalo" loading="lazy" />
+      <img src="images/beach-laughing.webp" alt="Laughing on the beach after a session" loading="lazy" />
+      <img src="images/big-wave.jpg" alt="Surfer in the lineup with pelicans flying overhead" loading="lazy" />
+      <img src="images/@granoysal_REVIVE-4331.jpg" alt="Surfing at Cabo Matapalo" loading="lazy" />
+      <img src="images/gallery-whatsapp-1.jpeg" alt="Surfing at Cabo Matapalo" loading="lazy" />
+      <img src="images/PHOTO-2026-03-12-13-39-40.jpg" alt="Surfing at Cabo Matapalo" loading="lazy" />
+      <img src="images/PHOTO-2026-03-12-20-20-31.jpg" alt="Surfing at Cabo Matapalo" loading="lazy" />
+      <img src="images/PHOTO-2026-03-12-20-19-16.jpg" alt="Surfing at Cabo Matapalo" loading="lazy" />
+      <img src="images/gallery-lesson-2.jpeg" alt="Surfing at Cabo Matapalo" loading="lazy" />
+    </div>
+  </section>
+
+  <!-- ── QUOTE ── -->
+  <div class="quote-strip">
+    <blockquote>
+      "The most biologically intense place on earth."
+    </blockquote>
+    <cite>— National Geographic, on the Osa Peninsula</cite>
+  </div>
+
+  <!-- ── EXPERIENCE ── -->
+  <section id="experience">
+    <div class="experience-inner">
+      <div class="experience-text">
+        <p class="section-label">What Makes Us Different</p>
+        <h2>More Than a Surf Lesson</h2>
+        <p class="section-intro" style="margin-top:1rem;">
+          We're not a crowded surf school on a tourist beach. Matapalo is raw, remote, and real — a place where you can catch uncrowded waves, spot wildlife from the lineup, and fall asleep to the sound of the jungle.
+        </p>
+        <ul class="feature-list">
+          <li>
+            <span class="icon">🌊</span>
+            <span>Waves for every level — gentle rollers for beginners, powerful points for advanced surfers</span>
+          </li>
+          <li>
+            <span class="icon">📸</span>
+            <span>Photo and video analysis available so you can track your real progress</span>
+          </li>
+          <li>
+            <span class="icon">🐒</span>
+            <span>Share the jungle with howler monkeys, toucans, dolphins, and humpback whales</span>
+          </li>
+          <li>
+            <span class="icon">🤙</span>
+            <span>Small groups, personalized coaching, genuine pura vida hospitality</span>
+          </li>
+        </ul>
+      </div>
+      <div class="experience-image">
+        <img
+          src="images/aaron-lesson.jpg"
+          alt="Aaron giving a surf lesson at Cabo Matapalo"
+          style="object-position: 30% center;"
+        />
+      </div>
+    </div>
+  </section>
+
+  <!-- ── TESTIMONIALS ── -->
+  <section id="testimonials">
+    <div class="testimonials-inner">
+      <div class="testimonials-header">
+        <p class="section-label">Guest Reviews</p>
+        <h2>What People Are Saying</h2>
+      </div>
+      <div class="testimonials-grid">
+
+        <div class="testimonial-card">
+          <div class="stars">★★★★★</div>
+          <blockquote>"True locals with an awesome vibe. They know every wave and every corner of Matapalo like no one else. Professional, welcoming, and the real surf spirit!"</blockquote>
+          <div class="reviewer">
+            <span class="reviewer-name">Blas</span>
+            <span class="reviewer-source">Google Review</span>
+          </div>
+        </div>
+
+        <div class="testimonial-card">
+          <div class="stars">★★★★★</div>
+          <blockquote>"I don't have enough words to describe how fortunate I feel to have come across Matapalo Surf Experience. Not only is Matapalo one of the most magical parts of Costa Rica, the staff are genuinely the nicest people to connect with and adapt to your surfing level to make you enjoy and learn as much as possible. This was a life changing experience that we plan to make a yearly tradition."</blockquote>
+          <div class="reviewer">
+            <span class="reviewer-name">Melissa</span>
+            <span class="reviewer-source">Google Review</span>
+          </div>
+        </div>
+
+        <div class="testimonial-card">
+          <div class="stars">★★★★★</div>
+          <blockquote>"First time surfing and this experience was phenomenal! Aaron, who is local to Matapalo, was a terrific instructor and got us all (age range 28–63) easily up on the boards in no time! Our group had a lot of success riding tons of waves! This exceeded expectations and we would 100% recommend to anyone looking for a first time surf experience!"</blockquote>
+          <div class="reviewer">
+            <span class="reviewer-name">Alana</span>
+            <span class="reviewer-source">Google Review</span>
+          </div>
+        </div>
+
+        <div class="testimonial-card">
+          <div class="stars">★★★★★</div>
+          <blockquote>"Aaron, Taylor and the whole crew of instructors took really good care of us this past week. I am fairly new to the sport and surfed every day I was here with these folks. They were all sincere, caring, and a lot of fun. I progressed each day under their individualized coaching and enjoyed a lot of good rides. My wife has only tried a couple times before, she found the waves and the people sweet as well."</blockquote>
+          <div class="reviewer">
+            <span class="reviewer-name">Bob</span>
+            <span class="reviewer-source">Google Review</span>
+          </div>
+        </div>
+
+        <div class="testimonial-card">
+          <div class="stars">★★★★★</div>
+          <blockquote>"Don't think twice about booking time with Matapalo Surf Experience. From start to finish they have been exceptional to work with. I'm an intermediate surfer who hadn't been in the water in a couple years and Aaron was the best. They have very high quality boards which is hard to do in such a remote part of CR. They know the waves and area inside and out — I felt very safe and confident with them and most important caught great waves. Taylor was exceptional at coordinating. Definitely a trusted and highly valuable team that will make your trip one to remember."</blockquote>
+          <div class="reviewer">
+            <span class="reviewer-name">Beth</span>
+            <span class="reviewer-source">Google Review</span>
+          </div>
+        </div>
+
+
+        <div class="testimonial-card">
+          <div class="stars">★★★★★</div>
+          <blockquote>"We had a great week with Matapalo Surf Experience. We got taken to the best break for our level every day and all the instructors were reliable and had good attitudes. They got us into a lot of waves too! Lance gave us really helpful technical feedback too. Highly recommended. We'll all be back!"</blockquote>
+          <div class="reviewer">
+            <span class="reviewer-name">Chloe</span>
+            <span class="reviewer-source">Google Review</span>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ── BOOK CTA ── -->
+  <section id="book">
+    <h2>Ready to Catch Your Wave?</h2>
+    <p>Spaces are limited and this place fills up fast. Reach out today and let's plan your perfect Matapalo experience.</p>
+    <div class="cta-buttons">
+      <a href="#contact" class="btn btn-white">Send a Message</a>
+      <a href="https://wa.me/50689460041" target="_blank" rel="noopener" class="btn btn-outline-white">WhatsApp Us</a>
+    </div>
+  </section>
+
+  <!-- ── CONTACT ── -->
+  <section id="contact">
+    <div class="contact-inner">
+      <div class="contact-info">
+        <p class="section-label">Get In Touch</p>
+        <h2>Let's Make It Happen</h2>
+        <p>
+          Have questions about booking, retreat packages, or what to expect? Drop us a line — we love hearing from future surfers. Response time is quick and the stoke is always high.
+        </p>
+        <div class="contact-links">
+          <a href="https://wa.me/50689460041" target="_blank" rel="noopener" class="contact-link">
+            <span class="icon">
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="black" width="18" height="18"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/><path d="M12 0C5.373 0 0 5.373 0 12c0 2.124.558 4.17 1.535 5.943L.057 23.571a.75.75 0 00.937.937l5.628-1.478A11.955 11.955 0 0012 24c6.627 0 12-5.373 12-12S18.627 0 12 0zm0 21.75a9.712 9.712 0 01-4.953-1.354l-.355-.211-3.68.965.983-3.586-.231-.368A9.712 9.712 0 012.25 12C2.25 6.615 6.615 2.25 12 2.25S21.75 6.615 21.75 12 17.385 21.75 12 21.75z"/></svg>
+            </span>
+            +506 8946 0041
+          </a>
+          <a href="mailto:matapalosurfexperience@gmail.com" class="contact-link">
+            <span class="icon">✉️</span>
+            matapalosurfexperience@gmail.com
+          </a>
+          <a href="https://instagram.com/matapalosurfexperience" target="_blank" rel="noopener" class="contact-link">
+            <span class="icon">
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="black" width="18" height="18"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/></svg>
+            </span>
+            @matapalosurfexperience
+          </a>
+          <a href="https://maps.google.com/?q=Cabo+Matapalo+Costa+Rica" target="_blank" rel="noopener" class="contact-link">
+            <span class="icon">📍</span>
+            Cabo Matapalo, Osa Peninsula
+          </a>
+        </div>
+      </div>
+
+      <div class="contact-form">
+        <h3>Send a Message</h3>
+        <form
+          action="https://formspree.io/f/mqeybeke"
+          method="POST"
+        >
+          <div class="form-group">
+            <label>Your Name</label>
+            <input type="text" name="name" placeholder="Jane Doe" />
+          </div>
+          <div class="form-group">
+            <label>Email</label>
+            <input type="email" name="email" placeholder="jane@example.com" />
+          </div>
+          <div class="form-group">
+            <label>WhatsApp Number</label>
+            <input type="tel" name="whatsapp" placeholder="e.g. +1 555 123 4567" />
+          </div>
+          <div class="form-group">
+            <label>Dates</label>
+            <input type="text" name="dates" placeholder="e.g. March 15–20, flexible, TBD..." />
+          </div>
+          <div class="form-group">
+            <label>I'm Interested In</label>
+            <select name="interest">
+              <option value="">Select a service...</option>
+              <option>Surf Lesson / Guiding</option>
+              <option>Excursions</option>
+              <option>Partner Retreats</option>
+              <option>General Inquiry</option>
+              <option>Photos / Videos</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label>Message</label>
+            <textarea name="message" placeholder="Tell us about your trip, dates, skill level, group size..."></textarea>
+          </div>
+          <button type="submit" class="form-submit">Send It! 🤙</button>
+        </form>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── FOOTER ── -->
+  <footer>
+    <img
+      class="footer-logo"
+      src="images/logo.png"
+      alt="Matapalo Surf Experience"
+    />
+    <div class="social">
+      <a href="https://instagram.com/matapalosurfexperience" target="_blank" rel="noopener">Instagram</a>
+      <a href="https://wa.me/50689460041" target="_blank" rel="noopener">WhatsApp</a>
+    </div>
+    <p>
+      <strong>Matapalo Surf Experience</strong> &nbsp;·&nbsp; Cabo Matapalo, Osa Peninsula, Costa Rica
+    </p>
+    <p style="margin-top:0.75rem; opacity:0.5; font-size:0.75rem;">
+      &copy; 2026 Matapalo Surf Experience. All rights reserved. Made with 🤙 in Costa Rica.
+    </p>
+  </footer>
+
+  <!-- ── WHATSAPP BUTTON ── -->
+  <a
+    href="https://wa.me/50689460041"
+    target="_blank"
+    rel="noopener"
+    class="whatsapp-float"
+    aria-label="Chat on WhatsApp"
+  >
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor">
+      <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/>
+      <path d="M12 0C5.373 0 0 5.373 0 12c0 2.124.558 4.17 1.535 5.943L.057 23.571a.75.75 0 00.937.937l5.628-1.478A11.955 11.955 0 0012 24c6.627 0 12-5.373 12-12S18.627 0 12 0zm0 21.75a9.712 9.712 0 01-4.953-1.354l-.355-.211-3.68.965.983-3.586-.231-.368A9.712 9.712 0 012.25 12C2.25 6.615 6.615 2.25 12 2.25S21.75 6.615 21.75 12 17.385 21.75 12 21.75z"/>
+    </svg>
+  </a>
+
+  <script>
+    // Hero slideshow
+    const slides = document.querySelectorAll('.hero-slides img');
+    let current = 0;
+    setInterval(() => {
+      slides[current].classList.remove('active');
+      current = (current + 1) % slides.length;
+      slides[current].classList.add('active');
+    }, 4500);
+
+    // Mobile nav toggle
+    const navToggle = document.querySelector('.nav-toggle');
+    const navMenu = document.querySelector('nav ul');
+    navToggle.addEventListener('click', () => {
+      const isOpen = navMenu.classList.toggle('open');
+      navToggle.classList.toggle('open', isOpen);
+      navToggle.setAttribute('aria-expanded', isOpen);
+    });
+    navMenu.querySelectorAll('a').forEach(link => {
+      link.addEventListener('click', () => {
+        navMenu.classList.remove('open');
+        navToggle.classList.remove('open');
+        navToggle.setAttribute('aria-expanded', 'false');
+      });
+    });
+  </script>
+
+</body>
+</html>
