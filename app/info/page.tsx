@@ -153,7 +153,7 @@ export default function InfoPage() {
       </div>
 
       {/* ── LOCAL SURF BREAKS ── */}
-      <section id="local-breaks" className="bg-sand px-8 py-20">
+      <section id="local-breaks" className="bg-mist px-8 py-20">
         <div className="mx-auto max-w-[960px]">
           <div className="mb-10">
             <H2>Local Surf Breaks</H2>
@@ -278,7 +278,7 @@ export default function InfoPage() {
       </section>
 
       {/* ── PAYMENT ── */}
-      <section id="payment" className="bg-sand px-8 py-20">
+      <section id="payment" className="bg-mist px-8 py-20">
         <div className="mx-auto max-w-[960px]">
           <div className="mb-10">
             <H2>Payment Methods</H2>

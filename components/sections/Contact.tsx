@@ -15,7 +15,7 @@ const InstagramIcon = () => (
 
 export default function Contact() {
   return (
-    <section id="contact" className="bg-sand px-8 py-20">
+    <section id="contact" className="bg-mist px-8 py-20">
       <div className="mx-auto grid max-w-[900px] grid-cols-1 items-start gap-12 md:grid-cols-2">
         {/* Info column */}
         <div>

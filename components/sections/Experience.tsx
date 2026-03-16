@@ -1,10 +1,10 @@
 import Image from "next/image";
 
 const features = [
-  { icon: "🌊", text: "Waves for every level — gentle rollers for beginners, powerful points for advanced surfers" },
-  { icon: "📸", text: "Photo and video analysis available so you can track your real progress" },
-  { icon: "🐒", text: "Share the jungle with howler monkeys, toucans, dolphins, and humpback whales" },
-  { icon: "🤙", text: "Small groups, personalized coaching, genuine pura vida hospitality" },
+  "Waves for every level — gentle rollers for beginners, powerful points for advanced surfers",
+  "Photo and video analysis available so you can track your real progress",
+  "Share the jungle with howler monkeys, toucans, dolphins, and humpback whales",
+  "Small groups, personalized coaching, genuine pura vida hospitality",
 ];
 
 export default function Experience() {
@@ -30,11 +30,9 @@ export default function Experience() {
           </p>
           <ul className="mt-6 flex flex-col gap-[0.85rem]">
             {features.map((f) => (
-              <li key={f.icon} className="flex items-start gap-3 text-[1rem] leading-[1.5] text-[#3d4f3e]">
-                <span className="mt-[0.05rem] flex h-8 w-8 shrink-0 items-center justify-center rounded-full bg-sand text-[1rem]">
-                  {f.icon}
-                </span>
-                <span>{f.text}</span>
+              <li key={f} className="flex items-start gap-3 text-[1rem] leading-[1.5] text-[#3d4f3e]">
+                <span className="mt-[0.4rem] h-[6px] w-[6px] shrink-0 rounded-full bg-coral" />
+                <span>{f}</span>
               </li>
             ))}
           </ul>

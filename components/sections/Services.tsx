@@ -4,21 +4,18 @@ const services = [
   {
     src: "/images/2 women surfing.png",
     alt: "Surf Coaching",
-    icon: "🏄",
     title: "Surf Coaching",
     desc: "One-on-one and small group lessons for all skill levels. We cover wave reading, surf etiquette, paddling technique, and pop-up mechanics. Our goal is to make every surfer — from first-timers to seasoned riders — feel confident, safe, and stoked in the water.",
   },
   {
     src: "/images/pelicans-lineup.webp",
     alt: "Jungle Adventures",
-    icon: "🌿",
     title: "Jungle Adventures",
     desc: "Surf boat trips, deep-sea fishing, horseback riding on the beach, tree climbing, and wildlife exploration. Howler monkeys, toucans, scarlet macaws, dolphins, and humpback whales are regular neighbors here.",
   },
   {
     src: "/images/surf-brigade.png",
     alt: "Group & Partner Retreats",
-    icon: "🤝",
     title: "Partner Retreats",
     desc: "Planning a yoga retreat, wellness event, or group adventure? We work with retreat organizers to create fully custom packages combining surf, nature, and local culture for your group.",
   },
@@ -26,7 +23,7 @@ const services = [
 
 export default function Services() {
   return (
-    <section id="services" className="bg-sand px-8 py-20">
+    <section id="services" className="bg-mist px-8 py-20">
       <div className="mx-auto max-w-[1200px]">
         <div className="mb-14 text-center">
           <p className="mb-[0.6rem] text-[0.78rem] font-extrabold uppercase tracking-[0.18em] text-coral">
@@ -60,7 +57,6 @@ export default function Services() {
                 />
               </div>
               <div className="px-7 pb-8 pt-6">
-                <div className="mb-2 text-[2rem]">{s.icon}</div>
                 <h3 className="font-bebas mb-[0.6rem] text-[1.4rem] text-dark">
                   {s.title}
                 </h3>
