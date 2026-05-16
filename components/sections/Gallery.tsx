@@ -2,6 +2,7 @@ type GalleryImage = {
   src: string;
   alt: string;
   tall?: boolean;
+  extraCls?: string;
 };
 
 const images: GalleryImage[] = [
@@ -16,6 +17,7 @@ const images: GalleryImage[] = [
   { src: "/images/PHOTO-2026-03-12-20-20-31.jpg", alt: "Surfing at Cabo Matapalo" },
   { src: "/images/PHOTO-2026-03-12-20-19-16.jpg", alt: "Surfing at Cabo Matapalo" },
   { src: "/images/gallery-lesson-2.jpeg", alt: "Surfing at Cabo Matapalo" },
+  { src: "/images/team-beach.jpg", alt: "Matapalo surf team on the beach", extraCls: "object-[center_40%] md:object-[center_20%]" },
 ];
 
 const tallCls =
@@ -47,7 +49,7 @@ export default function Gallery() {
             src={img.src}
             alt={img.alt}
             loading="lazy"
-            className={img.tall ? tallCls : regularCls}
+            className={`${img.tall ? tallCls : regularCls}${img.extraCls ? ` ${img.extraCls}` : ""}`}
           />
         ))}
       </div>
